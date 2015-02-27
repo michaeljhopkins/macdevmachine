@@ -6,10 +6,21 @@ How to install
 
 * Clone this repository to your home directory:
 
-        cd ~ && git clone git://github.com/michael-hopkins/macdevmachine.git
-        cd macdevmachine && mv .laptop.local ~/.laptop.local
-        sudo sh installScript1.sh
-        sudo sh installScript2.sh
+    cd ~ && git clone git://github.com/michael-hopkins/macdevmachine.git
+    cd macdevmachine
+        
+* If PHP machine
+
+    mv php.laptop.local ~/.laptop.local
+    
+* If non php machine
+
+    mv laptop.local ~/.laptop.local
+    
+* Run the install scripts
+
+    sudo sh installScript1.sh
+    sudo sh installScript2.sh
         
         nano ~/.zshrc
         
