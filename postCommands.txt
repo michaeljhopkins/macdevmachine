@@ -1,29 +1,3 @@
-echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"'  >> ~/.zshrc && . ~/.zshrc
-echo 'export PATH="$(brew --prefix homebrew/php/php56)/sbin:$PATH"' >> ~/.zshrc && . ~/.zshrc
-cp /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
-ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-echo 'PHP_AUTOCONF="'$(which autoconf)'"' >> ~/.zshrc && . ~/.zshrc
-sudo cp -v /usr/local/opt/nginx/*.plist /Library/LaunchDaemons/
-sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
-sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
-sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
-echo 'alias nginx.start="sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"' >> ~/.zshrc
-echo 'alias nginx.stop="sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"' >> ~/.zshrc
-echo 'alias nginx.restart="nginx.stop && nginx.start"' >> ~/.zshrc
-echo 'alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"' >> ~/.zshrc
-echo 'alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"' >> ~/.zshrc
-echo 'alias php-fpm.restart="php-fpm.stop && php-fpm.start"' >> ~/.zshrc
-echo 'alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"' >> ~/.zshrc
-echo 'alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"' >> ~/.zshrc
-echo 'alias mysql.restart="mysql.stop && mysql.start"' >> ~/.zshrc
-echo 'alias nginx.logs.error="tail -250f /usr/local/etc/nginx/logs/error.log"' >> ~/.zshrc
-echo 'alias nginx.logs.access="tail -250f /usr/local/etc/nginx/logs/access.log"' >> ~/.zshrc
-echo 'alias nginx.logs.default.access="tail -250f /usr/local/etc/nginx/logs/default.access.log"' >> ~/.zshrc
-echo 'alias nginx.logs.default-ssl.access="tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log"' >> ~/.zshrc
-echo 'alias nginx.logs.phpmyadmin.error="tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log"' >> ~/.zshrc
-echo 'alias nginx.logs.phpmyadmin.access="tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log"' >> ~/.zshrc && . ~/.zshrc
 mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf.bak
 mv nginx.conf /usr/local/etc/nginx/nginx.conf
 mv phpmyadmin.dev /usr/local/etc/nginx/sites-enabled/phpmyadmin.dev

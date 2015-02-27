@@ -20,6 +20,24 @@ brew_cask_install_or_upgrade() {
     brew cask install "$@"
   fi
 }
+append_to_zshrc 'PHP_AUTOCONF="$(which autoconf)"'
+append_to_zshrc 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"'
+append_to_zshrc 'export PATH="$(brew --prefix homebrew/php/php56)/sbin:$PATH"'
+append_to_zshrc 'alias nginx.start="sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"'
+append_to_zshrc 'alias nginx.stop="sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"'
+append_to_zshrc 'alias nginx.restart="nginx.stop && nginx.start"'
+append_to_zshrc 'alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"'
+append_to_zshrc 'alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"'
+append_to_zshrc 'alias php-fpm.restart="php-fpm.stop && php-fpm.start"'
+append_to_zshrc 'alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"'
+append_to_zshrc 'alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"'
+append_to_zshrc 'alias mysql.restart="mysql.stop && mysql.start"'
+append_to_zshrc 'alias nginx.logs.error="tail -250f /usr/local/etc/nginx/logs/error.log"'
+append_to_zshrc 'alias nginx.logs.access="tail -250f /usr/local/etc/nginx/logs/access.log"'
+append_to_zshrc 'alias nginx.logs.default.access="tail -250f /usr/local/etc/nginx/logs/default.access.log"'
+append_to_zshrc 'alias nginx.logs.default-ssl.access="tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log"'
+append_to_zshrc 'alias nginx.logs.phpmyadmin.error="tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log"'
+append_to_zshrc 'alias nginx.logs.phpmyadmin.access="tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log"'
 brew_tap 'homebrew/dupes'
 brew_tap 'caskroom/cask'
 brew_tap 'homebrew/nginx'
@@ -41,6 +59,14 @@ brew_install_or_upgrade 'brew-cask'
 brew_install_or_upgrade 'wget'
 brew_install_or_upgrade 'ffmpeg'
 brew_install_or_upgrade 'python'
+cp /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+sudo cp -v /usr/local/opt/nginx/*.plist /Library/LaunchDaemons/
+sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
+sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
+sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 brew_cask_install_or_upgrade 'alfred'
 brew_cask_install_or_upgrade 'caffeine'
 brew_cask_install_or_upgrade 'flux'
