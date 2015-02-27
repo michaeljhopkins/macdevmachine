@@ -20,48 +20,20 @@ brew_cask_install_or_upgrade() {
     brew cask install "$@"
   fi
 }
-echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"'  >> ~/.zshrc && . ~/.zshrc
 brew_tap 'homebrew/dupes'
 brew_tap 'caskroom/cask'
 brew_tap 'homebrew/nginx'
 brew_tap 'caskroom/versions'
 brew_tap 'josegonzalez/php'
+brew_tap 'homebrew/php'
 brew_install_or_upgrade --without-apache --with-fpm --with-mysql php56
-echo 'export PATH="$(brew --prefix homebrew/php/php56)/sbin:$PATH"' >> ~/.zshrc && . ~/.zshrc
 mkdir -p ~/Library/LaunchAgents
-cp /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
 brew_install_or_upgrade 'mysql'
-ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 brew_install_or_upgrade 'autoconf'
-echo 'PHP_AUTOCONF="'$(which autoconf)'"' >> ~/.zshrc && . ~/.zshrc
 brew_install_or_upgrade 'phpmyadmin'
 brew_install_or_upgrade 'nginx'
-sudo cp -v /usr/local/opt/nginx/*.plist /Library/LaunchDaemons/
-sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
-sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
-sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 mkdir -p /usr/local/etc/nginx/logs
 mkdir -p /usr/local/etc/nginx/sites-enabled
-echo 'alias nginx.start="sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"' >> ~/.zshrc
-echo 'alias nginx.stop="sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"' >> ~/.zshrc
-echo 'alias nginx.restart="nginx.stop && nginx.start"' >> ~/.zshrc
-echo 'alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"' >> ~/.zshrc
-echo 'alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"' >> ~/.zshrc
-echo 'alias php-fpm.restart="php-fpm.stop && php-fpm.start"' >> ~/.zshrc
-echo 'alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"' >> ~/.zshrc
-echo 'alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"' >> ~/.zshrc
-echo 'alias mysql.restart="mysql.stop && mysql.start"' >> ~/.zshrc
-echo 'alias nginx.logs.error="tail -250f /usr/local/etc/nginx/logs/error.log"' >> ~/.zshrc
-echo 'alias nginx.logs.access="tail -250f /usr/local/etc/nginx/logs/access.log"' >> ~/.zshrc
-echo 'alias nginx.logs.default.access="tail -250f /usr/local/etc/nginx/logs/default.access.log"' >> ~/.zshrc
-echo 'alias nginx.logs.default-ssl.access="tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log"' >> ~/.zshrc
-echo 'alias nginx.logs.phpmyadmin.error="tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log"' >> ~/.zshrc
-echo 'alias nginx.logs.phpmyadmin.access="tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log"' >> ~/.zshrc && . ~/.zshrc
-mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf.bak
-mv nginx.conf /usr/local/etc/nginx/nginx.conf
-mv phpmyadmin.dev /usr/local/etc/nginx/sites-enabled/phpmyadmin.dev
 brew_install_or_upgrade 'php56-mcrypt'
 brew_install_or_upgrade 'josegonzalez/php/composer'
 brew_install_or_upgrade 'phpunit'
