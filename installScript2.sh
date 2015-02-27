@@ -1,10 +1,4 @@
 #!/bin/sh
-xcode-select --install
-curl http://xquartz-dl.macosforge.org/SL/XQuartz-2.7.7.dmg -o /tmp/XQuartz.dmg
-open /tmp/XQuartz.dmg
-
-cp .laptop.local ~/.laptop.local
-
 curl --remote-name https://raw.githubusercontent.com/thoughtbot/laptop/master/mac
 sh mac 2>&1 | tee ~/laptop.log
 
