@@ -69,7 +69,6 @@ brew_install_or_upgrade 'ffmpeg2theora'
 brew_install_or_upgrade 'ffmpegthumbnailer'
 brew_install_or_upgrade 'imagemagick'
 brew_install_or_upgrade 'theora'
-brew_install_or_upgrade 'wol'
 cp /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
 ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
