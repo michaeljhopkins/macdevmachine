@@ -1,5 +1,5 @@
 #!/bin/sh
-curl --remote-name https://raw.githubusercontent.com/thoughtbot/laptop/master/mac
+curl --remote-name https://raw.githubusercontent.com/michael-hopkins/laptop/master/mac
 sh mac 2>&1 | tee ~/laptop.log
 
 cd ~/.oh-my-zsh/custom/plugins
