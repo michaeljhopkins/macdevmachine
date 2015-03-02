@@ -1,4 +1,9 @@
 #!/bin/sh
-xcode-select --install
-curl http://xquartz-dl.macosforge.org/SL/XQuartz-2.7.7.dmg -o /tmp/XQuartz.dmg
-open /tmp/XQuartz.dmg
+mv mac $HOME/mac
+touch $HOME/laptop.log
+chmod 777 $HOME/laptop.log
+cd $HOME
+sh mac 2>&1 | tee ~/laptop.log
+
+cd ~/.oh-my-zsh/custom/plugins
+git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
