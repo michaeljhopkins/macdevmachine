@@ -4,27 +4,35 @@ mac dev script
 How to install
 --------------
 
-* Clone this repository to your home directory:
+* Since git is likely not installed. Zip this repo up and place it in your home directory
 
-    cd ~ && git clone git://github.com/michael-hopkins/macdevmachine.git
-    cd macdevmachine
-        
+* Unfortunately I haven't figured out how to properly get oh-my-zsh installed automatically. So you need to do these things first manually
+
+* Execute the following commands one at a time
+
+    xcode-select --install
+    curl http://xquartz-dl.macosforge.org/SL/XQuartz-2.7.7.dmg -o /tmp/XQuartz.dmg
+    open /tmp/XQuartz.dmg
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew install zsh
+    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+    echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.zshrc
+    
+* Restart your machine (I'm sorry)
+
 * If PHP machine
 
     mv php.laptop.local ~/.laptop.local
     
 * If non php machine
 
-    mv laptop.local ~/.laptop.local
-    
-* Run the install scripts
+    mv nophp.laptop.local ~/.laptop.local
+        
+* Run the following script
 
-    sudo sh installScript1.sh
-    sudo sh installScript2.sh
-        
-        nano ~/.zshrc
-        
-* make the following changes
+    sh ~/macdevmachine/installScript1.sh
+    
+* Open *sublime text* (or your preferred editor) and open the file found in your home directory `.zshrc` or from terminal `nano ~/.zshrc`
 
 Change line 8 to
 
@@ -32,4 +40,4 @@ Change line 8 to
 
 Change line 48 to
 
-    plugins=(sudo sublime command-not-found cp web-search node npm pip nvm gem rake rbenv bundler ruby python brew brew-cask zsh-syntax-highlighting )
+    plugins=(sudo sublime command-not-found cp web-search node npm pip nvm gem rake rbenv bundler ruby python brew brew-cask zsh-syntax-highlighting)

@@ -1,3 +1,4 @@
+#!/bin/sh
 brew_cask_expand_alias() {
   brew cask info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
 }
@@ -20,8 +21,8 @@ brew_cask_install_or_upgrade() {
     brew cask install "$@"
   fi
 }
+
 append_to_zshrc 'PHP_AUTOCONF="$(which autoconf)"'
-append_to_zshrc 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"'
 append_to_zshrc 'export PATH="$(brew --prefix homebrew/php/php56)/sbin:$PATH"'
 append_to_zshrc 'alias nginx.start="sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"'
 append_to_zshrc 'alias nginx.stop="sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"'
@@ -55,20 +56,22 @@ mkdir -p /usr/local/etc/nginx/logs
 mkdir -p /usr/local/etc/nginx/sites-enabled
 brew_install_or_upgrade 'php56-mcrypt'
 brew_install_or_upgrade 'josegonzalez/php/composer'
-brew_install_or_upgrade 'phpunit'
 brew_install_or_upgrade 'brew-cask'
-brew_install_or_upgrade 'wget'
-brew_install_or_upgrade 'ffmpeg'
-brew_install_or_upgrade 'python'
+
+
 brew_install_or_upgrade 'exif'
 brew_install_or_upgrade 'exiftags'
 brew_install_or_upgrade 'exiftool'
-brew_install_or_upgrade 'flac'
+brew_install_or_upgrade 'ffmpeg'
 brew_install_or_upgrade 'ffmpeg'
 brew_install_or_upgrade 'ffmpeg2theora'
 brew_install_or_upgrade 'ffmpegthumbnailer'
+brew_install_or_upgrade 'flac'
 brew_install_or_upgrade 'imagemagick'
+brew_install_or_upgrade 'phpunit'
+brew_install_or_upgrade 'python'
 brew_install_or_upgrade 'theora'
+brew_install_or_upgrade 'wget'
 cp /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
 ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
@@ -77,36 +80,36 @@ sudo cp -v /usr/local/opt/nginx/*.plist /Library/LaunchDaemons/
 sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
+brew_cask_install_or_upgrade 'adobe-creative-cloud'
+brew_cask_install_or_upgrade 'adventure'
 brew_cask_install_or_upgrade 'alfred'
 brew_cask_install_or_upgrade 'caffeine'
-brew_cask_install_or_upgrade 'flux'
-brew_cask_install_or_upgrade 'vagrant'
-brew_cask_install_or_upgrade 'google-chrome'
-brew_cask_install_or_upgrade 'iterm2'
-brew_cask_install_or_upgrade 'phpstorm'
-brew_cask_install_or_upgrade 'sequel-pro'
-brew_cask_install_or_upgrade 'slack'
-brew_cask_install_or_upgrade 'textexpander'
+brew_cask_install_or_upgrade 'chromecast'
 brew_cask_install_or_upgrade 'dropbox'
-brew_cask_install_or_upgrade 'slack'
-brew_cask_install_or_upgrade 'transmit'
+brew_cask_install_or_upgrade 'droplr'
+brew_cask_install_or_upgrade 'electric-sheep'
 brew_cask_install_or_upgrade 'firefox'
-brew_cask_install_or_upgrade 'spotify'
 brew_cask_install_or_upgrade 'flash'
+brew_cask_install_or_upgrade 'flux'
+brew_cask_install_or_upgrade 'google-chrome'
+brew_cask_install_or_upgrade 'google-drive'
+brew_cask_install_or_upgrade 'iterm2'
+brew_cask_install_or_upgrade 'istat'
+brew_cask_install_or_upgrade 'java'
+brew_cask_install_or_upgrade 'paintbrush'
+brew_cask_install_or_upgrade 'phpstorm-eap'
+brew_cask_install_or_upgrade 'screenhero'
+brew_cask_install_or_upgrade 'sequel-pro'
+brew_cask_install_or_upgrade 'skype'
+brew_cask_install_or_upgrade 'slack'
+brew_cask_install_or_upgrade 'spotify'
 brew_cask_install_or_upgrade 'sublime-text3'
+brew_cask_install_or_upgrade 'teamviewer'
+brew_cask_install_or_upgrade 'textexpander'
+brew_cask_install_or_upgrade 'transmit'
+brew_cask_install_or_upgrade 'transmission'
+brew_cask_install_or_upgrade 'vagrant'
 brew_cask_install_or_upgrade 'virtualbox'
 brew_cask_install_or_upgrade 'vlc'
-brew_cask_install_or_upgrade 'skype'
-brew_cask_install_or_upgrade 'transmission'
-brew_cask_install_or_upgrade 'google-drive'
-brew_cask_install_or_upgrade 'adobe-creative-cloud'
-brew_cask_install_or_upgrade 'paintbrush'
-brew_cask_install_or_upgrade 'teamviewer'
-brew_cask_install_or_upgrade 'adventure'
-brew_cask_install_or_upgrade 'chromecast'
-brew_cask_install_or_upgrade 'electric-sheep'
-brew_cask_install_or_upgrade 'chromecast'
-brew_cask_install_or_upgrade 'java'
-brew_cask_install_or_upgrade 'screenhero'
-brew_cask_install_or_upgrade 'istat'
-brew_cask_install_or_upgrade 'droplr'
+brew update
+brew cleanup
