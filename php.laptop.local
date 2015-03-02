@@ -111,5 +111,11 @@ brew_cask_install_or_upgrade 'transmission'
 brew_cask_install_or_upgrade 'vagrant'
 brew_cask_install_or_upgrade 'virtualbox'
 brew_cask_install_or_upgrade 'vlc'
+# Design Toolbox
+brew_cask_install_or_update 'skyfonts'
+brew_cask_install_or_update 'glueprint'
+brew_cask_install_or_update 'dash'
+brew_cask_install_or_update 'cactus'
+brew_cask_install_or_update 'sketch-toolbox'
 brew update
 brew cleanup
