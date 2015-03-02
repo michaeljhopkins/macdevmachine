@@ -17,6 +17,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew install zsh
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.zshrc
+echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
 ```
 Restart your machine (I'm sorry)
 
