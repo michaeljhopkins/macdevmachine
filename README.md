@@ -53,3 +53,9 @@ Change line 48 to
 ```shell
 plugins=(sudo sublime command-not-found cp web-search node npm pip nvm gem rake rbenv bundler ruby python brew brew-cask zsh-syntax-highlighting)
 ```
+
+TODO
+--------------
+
+* Only install IDE's relevant to the user based on shell prompts
+* Figure out how to automate the very manual first part
