@@ -1,6 +1,16 @@
 mac dev script
 =======================
 
+Preface
+--------------
+
+This is gonna install a whole bunch of stuff on your computer. Theres a pretty good chance that you personally wont need everything. I'd advise making a fork, and then you could edit the `.laptop.local` file to alter the things it installs
+
+Credit
+--------------
+
+There is quite literally a copy of Thoughtbot's [laptop](https://github.com/thoughtbot/laptop)'s script at the base of this. Many cheers to them.
+
 How to install
 --------------
 
