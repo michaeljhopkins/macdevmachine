@@ -79,6 +79,12 @@ if [ "$PHP" == "1" ]; then
   brew_install_or_upgrade 'josegonzalez/php/composer'
 fi
 
+if [ "$JAVA" == "1" ]; then
+  brew_install_or_upgrade 'groovy'
+  brew_install_or_upgrade 'scala'
+  brew_install_or_upgrade 'maven'
+fi
+
 brew_install_or_upgrade 'brew-cask'
 brew_install_or_upgrade 'exif'
 brew_install_or_upgrade 'exiftags'
