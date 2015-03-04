@@ -31,14 +31,11 @@ echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
 ```
 Restart your machine (I'm sorry)
 
-If PHP machine
+Move the following file to your home folder
 ```shell
-mv php.laptop.local ~/.laptop.local
+mv .laptop.local ~/.laptop.local
 ```
-If non php machine
-```shell
-mv nophp.laptop.local ~/.laptop.local
-```
+
 Run the following script
 ```shell
 sh ~/macdevmachine/installScript1.sh
