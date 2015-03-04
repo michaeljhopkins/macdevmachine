@@ -23,11 +23,11 @@ brew_cask_install_or_upgrade() {
 }
 
 echo "Do you want some Java Dev stuff? Enter 1 or 0"
-read -e JAVA
+read JAVA
 echo "Do you want some PHP Dev Stuff? Enter 1 or 0"
-read -e PHP
+read PHP
 echo "Do you want some Design Stuff? Enter 1 or 0"
-read -e DESIGN
+read DESIGN
 
 append_to_zshrc 'alias nginx.start="sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"'
 append_to_zshrc 'alias nginx.stop="sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"'
@@ -83,6 +83,7 @@ if [ "$JAVA" == "1" ]; then
   brew_install_or_upgrade 'groovy'
   brew_install_or_upgrade 'scala'
   brew_install_or_upgrade 'maven'
+  brew_install_or_upgrade 'gradle'
 fi
 
 brew_install_or_upgrade 'brew-cask'
@@ -95,7 +96,9 @@ brew_install_or_upgrade 'ffmpeg2theora'
 brew_install_or_upgrade 'ffmpegthumbnailer'
 brew_install_or_upgrade 'flac'
 brew_install_or_upgrade 'imagemagick'
-brew_install_or_upgrade 'phpunit'
+if [ "$PHP" == "1" ]; then
+  brew_install_or_upgrade 'phpunit'
+fi
 brew_install_or_upgrade 'python'
 brew_install_or_upgrade 'theora'
 brew_install_or_upgrade 'wget'

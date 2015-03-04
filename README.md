@@ -31,6 +31,8 @@ echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
 ```
 Restart your machine (I'm sorry)
 
+Is your terminal colored and rad like zsh should be? If not. Something didn't work correctly
+
 Move the following file to your home folder
 ```shell
 mv .laptop.local ~/.laptop.local
@@ -38,7 +40,7 @@ mv .laptop.local ~/.laptop.local
 
 Run the following script
 ```shell
-sh ~/macdevmachine/installScript1.sh
+. ~/macdevmachine/installScript1.sh
 ```
 Open *sublime text* (or your preferred editor) and open the file found in your home directory `.zshrc` or from terminal `nano ~/.zshrc`
 
