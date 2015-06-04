@@ -22,32 +22,16 @@ brew_cask_install_or_upgrade() {
   fi
 }
 
-echo "Do you want some Java Dev stuff? Enter 1 or 0"
-read -s JAVA
-echo "Do you want some PHP Dev Stuff? Enter 1 or 0"
-read -s PHP
-echo "Do you want some Design Stuff? Enter 1 or 0"
-read -s DESIGN
-if [[ ${PHP} != 1 && ${PHP} != 0 ]]; then
-  ${PHP} = 1;
-fi
-if [[ ${JAVA} != 1 && ${JAVA} != 0 ]]; then
-  ${JAVA} = 1;
-fi
-if [[ ${DESIGN} != 1 && ${DESIGN} != 0 ]]; then
-  ${DESIGN} = 1;
-fi
 append_to_zshrc 'alias nginx.start="sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"'
 append_to_zshrc 'alias nginx.stop="sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"'
 append_to_zshrc 'alias nginx.restart="nginx.stop && nginx.start"'
 
-if [[ ${PHP} == 1 ]]; then
-  append_to_zshrc 'PHP_AUTOCONF="$(which autoconf)"'
-  append_to_zshrc 'export PATH="$(brew --prefix homebrew/php/php56)/sbin:$PATH"'
-  append_to_zshrc 'alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"'
-  append_to_zshrc 'alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"'
-  append_to_zshrc 'alias php-fpm.restart="php-fpm.stop && php-fpm.start"'
-fi
+append_to_zshrc 'PHP_AUTOCONF="$(which autoconf)"'
+append_to_zshrc 'export PATH="$(brew --prefix homebrew/php/php56)/sbin:$PATH"'
+append_to_zshrc 'alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"'
+append_to_zshrc 'alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"'
+append_to_zshrc 'alias php-fpm.restart="php-fpm.stop && php-fpm.start"'
+
 
 append_to_zshrc 'alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"'
 append_to_zshrc 'alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"'
@@ -63,16 +47,12 @@ brew_tap 'caskroom/cask'
 brew_tap 'homebrew/nginx'
 brew_tap 'caskroom/versions'
 
-if [[ ${PHP} == 1 ]]; then
-  brew_tap 'josegonzalez/php'
-  brew_tap 'homebrew/php'
-fi
+brew_tap 'josegonzalez/php'
+brew_tap 'homebrew/php'
 
 brew update
 
-if [[ ${PHP} == 1 ]]; then
-  brew_install_or_upgrade --without-apache --with-fpm --with-mysql php56
-fi
+brew_install_or_upgrade --without-apache --with-fpm --with-mysql php56
 
 mkdir -p ~/Library/LaunchAgents
 brew_install_or_upgrade 'mysql'
@@ -80,19 +60,10 @@ brew_install_or_upgrade 'nginx'
 mkdir -p /usr/local/etc/nginx/logs
 mkdir -p /usr/local/etc/nginx/sites-enabled
 
-if [[ ${PHP} == 1 ]]; then
-  brew_install_or_upgrade 'autoconf'
-  brew_install_or_upgrade 'phpmyadmin'
-  brew_install_or_upgrade 'php56-mcrypt'
-  brew_install_or_upgrade 'josegonzalez/php/composer'
-fi
-
-if [[ ${JAVA} == 1 ]]; then
-  brew_install_or_upgrade 'groovy'
-  brew_install_or_upgrade 'scala'
-  brew_install_or_upgrade 'maven'
-  brew_install_or_upgrade 'gradle'
-fi
+brew_install_or_upgrade 'autoconf'
+brew_install_or_upgrade 'phpmyadmin'
+brew_install_or_upgrade 'php56-mcrypt'
+brew_install_or_upgrade 'josegonzalez/php/composer'
 
 brew_install_or_upgrade 'brew-cask'
 brew_install_or_upgrade 'exif'
@@ -104,9 +75,8 @@ brew_install_or_upgrade 'ffmpeg2theora'
 brew_install_or_upgrade 'ffmpegthumbnailer'
 brew_install_or_upgrade 'flac'
 brew_install_or_upgrade 'imagemagick'
-if [[ ${PHP} == 1 ]]; then
-  brew_install_or_upgrade 'phpunit'
-fi
+brew_install_or_upgrade 'phpunit'
+
 brew_install_or_upgrade 'python'
 brew_install_or_upgrade 'theora'
 brew_install_or_upgrade 'wget'
@@ -118,10 +88,8 @@ sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 
-if [[ ${PHP} == 1 ]]; then
-  cp /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
-  launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
-fi
+cp /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
 
 brew_cask_install_or_upgrade 'adventure'
 brew_cask_install_or_upgrade 'alfred'
@@ -140,11 +108,8 @@ brew_cask_install_or_upgrade 'istat'
 brew_cask_install_or_upgrade 'java'
 brew_cask_install_or_upgrade 'paintbrush'
 
-if [[ ${PHP} == 1 ]]; then
-  brew_cask_install_or_upgrade 'phpstorm-eap'
-fi
+brew_cask_install_or_upgrade 'phpstorm-eap'
 
-brew_cask_install_or_upgrade 'screenhero'
 brew_cask_install_or_upgrade 'sequel-pro'
 brew_cask_install_or_upgrade 'skype'
 brew_cask_install_or_upgrade 'slack'
@@ -158,18 +123,12 @@ brew_cask_install_or_upgrade 'vagrant'
 brew_cask_install_or_upgrade 'virtualbox'
 brew_cask_install_or_upgrade 'vlc'
 
-if [[ ${DESIGN} == 1 ]]; then
-  brew_cask_install_or_upgrade 'adobe-creative-cloud'
-  brew_cask_install_or_upgrade 'skyfonts'
-  brew_cask_install_or_upgrade 'glueprint'
-  brew_cask_install_or_upgrade 'dash'
-  brew_cask_install_or_upgrade 'cactus'
-  brew_cask_install_or_upgrade 'sketch-toolbox'
-fi
-
-if [[ ${JAVA} == 1 ]]; then
-  brew_cask_install_or_upgrade 'eclipse-ide'
-fi
+brew_cask_install_or_upgrade 'adobe-creative-cloud'
+brew_cask_install_or_upgrade 'skyfonts'
+brew_cask_install_or_upgrade 'glueprint'
+brew_cask_install_or_upgrade 'dash'
+brew_cask_install_or_upgrade 'cactus'
+brew_cask_install_or_upgrade 'sketch-toolbox'
 
 brew update
 brew cleanup

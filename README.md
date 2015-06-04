@@ -14,7 +14,11 @@ There is quite literally a copy of Thoughtbot's [laptop](https://github.com/thou
 How to install
 --------------
 
-Since git is likely not installed. Zip this repo up and place it in your home directory
+Since git is likely not installed. Zip this repo up and place it in your home directory. If git is installed.
+```shell
+cd ~
+git clone git@github.com:michaeljhopkins/macdevmachine.git
+```
 
 Unfortunately I haven't figured out how to properly get oh-my-zsh installed automatically. So you need to do these things first manually
 
@@ -35,14 +39,18 @@ Is your terminal colored and rad like zsh should be? If not. Something didn't wo
 
 Move the following file to your home folder
 ```shell
-mv .laptop.local ~/.laptop.local
+mv ~/macdevmachine/.laptop.local ~/.laptop.local
 ```
 
 Run the following script
 ```shell
-. ~/macdevmachine/installScript1.sh
+sh ~/macdevmachine/installScript1.sh
 ```
 Open *sublime text* (or your preferred editor) and open the file found in your home directory `.zshrc` or from terminal `nano ~/.zshrc`
+
+```shell
+subl ~/.zshrc
+```
 
 Change line 8 to
 ```shell
