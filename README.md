@@ -27,13 +27,7 @@ Execute the following commands one at a time
 xcode-select --install
 curl http://xquartz-dl.macosforge.org/SL/XQuartz-2.7.7.dmg -o /tmp/XQuartz.dmg
 open /tmp/XQuartz.dmg
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install zsh
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.zshrc
-echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
-cd ~/.oh-my-zsh/custom/plugins
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+sh ~/macdevmachine/preinstallScript1.sh
 ```
 
 Open *sublime text* (or your preferred editor) and open the file found in your home directory `.zshrc` or from terminal `nano ~/.zshrc`
