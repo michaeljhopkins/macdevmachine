@@ -32,20 +32,10 @@ brew install zsh
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.zshrc
 echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
-```
-Restart your machine (I'm sorry)
-
-Is your terminal colored and rad like zsh should be? If not. Something didn't work correctly
-
-Move the following file to your home folder
-```shell
-mv ~/macdevmachine/.laptop.local ~/.laptop.local
+cd ~/.oh-my-zsh/custom/plugins
+git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 ```
 
-Run the following script
-```shell
-sh ~/macdevmachine/installScript1.sh
-```
 Open *sublime text* (or your preferred editor) and open the file found in your home directory `.zshrc` or from terminal `nano ~/.zshrc`
 
 ```shell
@@ -60,6 +50,23 @@ Change line 48 to
 ```shell
 plugins=(sudo sublime command-not-found cp web-search node npm pip nvm gem rake rbenv bundler ruby python brew brew-cask zsh-syntax-highlighting)
 ```
+
+Restart your machine (I'm sorry)
+
+Is your terminal colored and rad like zsh should be? If not. Something didn't work correctly
+
+Edit this file to alter which programs to install. The contents should be fairly self explanitory
+```shell
+subl ~/macdevmachine/.laptop.local
+```
+
+Run the following script
+```shell
+sh ~/macdevmachine/installScript1.sh
+```
+
+If you run into any errors during the execution of the above script, you **SHOULD** be able to simply rerun it after
+addressing whatever the error was. But let me know about it anyways
 
 TODO
 --------------
