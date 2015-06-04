@@ -20,8 +20,6 @@ cd ~
 git clone git@github.com:michaeljhopkins/macdevmachine.git
 ```
 
-Unfortunately I haven't figured out how to properly get oh-my-zsh installed automatically. So you need to do these things first manually
-
 Execute the following commands one at a time
 ```shell
 xcode-select --install
