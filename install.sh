@@ -1,7 +1,6 @@
 #!/bin/sh
-brewTaps=(thoughtbot/formulae homebrew/services homebrew/dupes homebrew/versions homebrew/homebrew-php caskroom/homebrew-cask caskroom/versions homebrew/nginx caskroom/fonts)
-brewPackages=(nvm php70 mcrypt php70-mcrypt mysql redis mongodb git nginx tree curl zsh imagemagick rbenv libyaml wget heroku-toolbelt)
-casksPackages=(iterm2 alfred droplr dash flux google-chrome google-drive java phpstorm sequel-pro slack spotify sublime-text3 teamviewer transmit transmission vlc vagrant-manager tower)
+brewPackages=(redis git nginx tree curl zsh imagemagick rbenv nvm libyaml wget heroku-toolbelt pyenv-virtualenv pyenv-virtualenvwrapper)
+casksPackages=(ngrok alfred droplr dash java phpstorm webstorm rubymine pycharm spotify teamviewer vlc)
 composerPackages=("laravel/envoy" "laravel/installer" "fabpot/php-cs-fixer" "halleck45/phpmetrics" "pdepend/pdepend" "squizlabs/php_codesniffer" "sebastian/phpcpd" "phpmd/phpmd")
 npmPackages=(grunt-cli ied gulp bower)
 
@@ -13,7 +12,7 @@ npmPackages=(grunt-cli ied gulp bower)
 echo "We're about to use a whole hell of a lot of homebrew, which relies upon Git.  In order to download so much from the Git API without waiting, "
 echo "you will need to provide a valid Git API Access Token.  You can obtain one here: https://github.com/settings/tokens/new \n\n"
 echo "Token: "
-export HOMEBREW_GITHUB_API_TOKEN=37b193ee8232b8e2f099c395c832c04cf656bb40
+export HOMEBREW_GITHUB_API_TOKEN=0ec94289216370fdee62b1d408f98de914ba4df0
 
 fancy_echo() {
   local fmt="$1"; shift
@@ -41,6 +40,26 @@ append_to_zshrc() {
   fi
 }
 
+sudo xcodebuild -license
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew doctor
+brew update
+git clone https://github.com/michaeljhopkins/macdevmachine
+brew cask install sublime-text
+brew cask install google-chrome
+brew install git curl zsh wget ffmpeg stow python
+git clone https://github.com/tarjoilija/zgen
+brewTaps=(thoughtbot/formulae homebrew/services homebrew/dupes homebrew/versions homebrew/homebrew-php caskroom/homebrew-cask caskroom/versions homebrew/nginx caskroom/fonts)
+for tap in $brewTaps; do brew tap $tap; done
+chsh -s /bin/zsh
+git clone https://github.com/michaeljhopkins/dotfiles ~/.dotfiles
+cd ~/.dotfiles
+stow --target=$HOME zsh
+cd
+ln -s /Users/m/.dotfiles/.zshrc.d /Users/m/.zshrc.d
+zsh
+
+
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
 set -e
@@ -55,14 +74,6 @@ fi
 
 # shellcheck disable=SC2016
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
-
-case "$SHELL" in
-  */zsh) : ;;
-  *)
-    fancy_echo "Changing your shell to zsh ..."
-      chsh -s "$(which zsh)"
-    ;;
-esac
 
 gem_install_or_update() {
   if gem list "$1" --installed > /dev/null; then
@@ -80,11 +91,6 @@ append_to_zshrc $token
 
 fancy_echo "Updating Homebrew formulas ..."
 brew update
-
-fancy_echo "Installing Homebrew Packages ..."
-for i in "${brewTaps[@]}"; do
-  brew tap $i
-done
 
 for i in "${brewPackages[@]}"; do
   brew install $i
@@ -109,10 +115,10 @@ for i in "${npmPackages[@]}"; do
   npm install $i -g
 done
 
-git clone https://github.com/powerline/fonts
-./fonts/install.sh
 
-brew services restart redis
+nvm install v5
+
+rbenv install 2.3.0
 
 gem update --system
 
