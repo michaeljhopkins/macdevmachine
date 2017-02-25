@@ -1,8 +1,8 @@
 #!/bin/sh
 
-casksPackages=(sublime-text google-chrome pandora spotify disk-inventory-x iterm2 shiftit skype jetbrains-toolbox alfred)
+casksPackages=(sublime-text google-chrome spotify disk-inventory-x iterm2 shiftit skype jetbrains-toolbox alfred)
 composerPackages=("laravel/installer" "laravel/valet" "fabpot/php-cs-fixer")
-npmPackages=(grunt-cli yarn gulp bower)
+npmPackages=(yarn)
 
 # Welcome to the thoughtbot laptop script!
 # Be prepared to turn your laptop (or desktop, no haters here)
