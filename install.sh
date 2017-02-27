@@ -1,6 +1,6 @@
 #!/bin/sh
 
-casksPackages=(sublime-text google-chrome spotify disk-inventory-x iterm2 shiftit skype jetbrains-toolbox alfred)
+casksPackages=(sublime-text google-chrome spotify disk-inventory-x iterm2 shiftit skype jetbrains-toolbox alfred adobe-creative-cloud filezilla dropbox balsamiq-mockups google-drive flux evernote)
 composerPackages=("laravel/installer" "laravel/valet" "fabpot/php-cs-fixer")
 npmPackages=(yarn)
 
